@@ -1,0 +1,18 @@
+<h2>Explore Kingdom of Saudi Arabia</h2>
+
+<div class="grid">
+  <mat-card *ngFor="let c of cities">
+    <img mat-card-image [src]="c.image" [alt]="c.name">
+
+    <div class="card-header">
+      <mat-card-title>{{ c.name }}</mat-card-title>
+      <button mat-icon-button class="bell" (click)="activateAlerts(c.name)">
+        <mat-icon>notifications_active</mat-icon>
+      </button>
+    </div>
+
+    <mat-card-content>
+      <p>Temperature: <strong>{{ c.temperature }}°C</strong></p>
+    </mat-card-content>
+  </mat-card>
+</div>

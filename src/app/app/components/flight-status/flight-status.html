@@ -1,0 +1,31 @@
+<h2>Flight Status</h2>
+
+<div class="grid">
+  <mat-card *ngFor="let f of flights" (click)="openDetails(f)" style="cursor:pointer;">
+    <img class="thumb" [src]="f.image" [alt]="f.airline + ' ' + f.id">
+
+  <mat-chip-set class="chip" aria-label="status">
+  <mat-chip
+    [ngClass]="{
+      'green': f.status === 'on-time',
+      'yellow': f.status === 'boarding' || f.status === 'gates open',
+      'red': f.status === 'delayed'
+    }"
+  >
+    {{ f.status | titlecase }}
+  </mat-chip>
+</mat-chip-set>
+
+
+    <mat-card-title>{{ f.airline }} · {{ f.id }}</mat-card-title>
+    <mat-card-subtitle class="row">
+      <mat-icon>flight_takeoff</mat-icon> {{ f.from }}
+      <mat-icon>arrow_right_alt</mat-icon>
+      <mat-icon>flight_land</mat-icon> {{ f.to }}
+    </mat-card-subtitle>
+
+    <mat-card-content>
+      <p class="muted">Tap for details & checklist</p>
+    </mat-card-content>
+  </mat-card>
+</div>

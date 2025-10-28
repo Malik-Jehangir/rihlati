@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span class="brand">Rihlati</span>
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/">Home</a>
+  <a mat-button routerLink="/explore-ksa">Explore KSA</a>
+  <a mat-button routerLink="/rooms">Booking Room</a>
+  <a mat-button routerLink="/ride">Book a Ride</a>
+  <a mat-button routerLink="/permit">Permit</a>
+  <a mat-button routerLink="/flight-status">Flight Status</a>
+  <a mat-button routerLink="/recommendations">Recommendations</a>
+  <a mat-button routerLink="/invest">Invest in KSA</a>
+
+  <span class="spacer"></span>
+
+
+@if (userName) {
+  <span style="margin-right:.25rem;">Hi, {{ userName }}</span>
+}
+<button mat-icon-button aria-label="User" (click)="openAuth()">
+  <mat-icon>account_circle</mat-icon>
+</button>
+</mat-toolbar>

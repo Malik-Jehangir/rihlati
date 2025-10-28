@@ -1,0 +1,14 @@
+<h2>Choose your room</h2>
+<div class="grid">
+  <mat-card *ngFor="let r of rooms">
+    <img mat-card-image [src]="r.image" [alt]="r.name" />
+    <mat-card-title>{{ r.name }}</mat-card-title>
+    <mat-card-content>
+      <p><strong>{{ r.priceSar }} SAR</strong> · {{ r.size }} m² · {{ r.beds }} bed(s)</p>
+        <p style="font-size: 13px; opacity: 0.8;">📍 {{ r.distanceKm }} km away</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="openRoom(r)">Details</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

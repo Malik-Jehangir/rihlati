@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>{{ room.name }}</h2>
+<mat-dialog-content>
+  <img [src]="room.image" [alt]="room.name"
+       style="width:100%; max-height:220px; object-fit:cover; border-radius:8px;" />
+  <p style="margin-top:.5rem;">
+    Size: <strong>{{ room.size }} m²</strong> · Beds: <strong>{{ room.beds }}</strong>
+    <p style="font-size: 14px; margin-bottom: .5rem;">
+  📍 Distance: <strong>{{ room.distanceKm }} km</strong> from your location
+</p>
+  <p>
+    Price: <strong>{{ room.priceSar }} SAR</strong>
+    (≈ {{ currency.toPKR(room.priceSar) }} PKR)
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-flat-button color="primary" (click)="book()">Book</button>
+</mat-dialog-actions>

@@ -1,0 +1,12 @@
+<h2>Checkout</h2>
+<p>Room: <strong>{{ room.name }}</strong></p>
+<p>
+  Total: <strong>{{ room.priceSar }} SAR</strong>
+  <span> · {{ currency.toPKR(room.priceSar) }} PKR</span>
+</p>
+
+<button class="mat-mdc-unelevated-button mdc-button mdc-button--unelevated"
+        onclick="alert('Payment complete!')">
+  <span class="mdc-button__label">Pay Now</span>
+</button>
+

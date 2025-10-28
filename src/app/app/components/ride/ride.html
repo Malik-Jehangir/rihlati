@@ -1,0 +1,48 @@
+<h2>Book a Ride</h2>
+
+<form [formGroup]="form" class="stack" (ngSubmit)="search()">
+  <div class="row" style="gap:1rem; flex-wrap: wrap;">
+    <mat-form-field appearance="outline" style="min-width:260px; flex:1 1 280px;">
+      <mat-label>Pickup</mat-label>
+      <input matInput formControlName="pickup" readonly>
+      <mat-icon matSuffix>my_location</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="min-width:260px; flex:2 1 360px;">
+      <mat-label>Destination</mat-label>
+      <input matInput formControlName="destination" placeholder="e.g., King Abdulaziz Road">
+      <mat-icon matSuffix>place</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit">Find Drivers</button>
+  </div>
+  <span class="muted">Your location is used as the departing point.</span>
+</form>
+
+<!-- Loading -->
+<div *ngIf="finding" class="center">
+  <mat-progress-spinner mode="indeterminate" diameter="36"></mat-progress-spinner>
+  <div class="muted" style="margin-top:.5rem;">Finding nearby drivers…</div>
+</div>
+
+<!-- Results -->
+<div *ngIf="!finding && drivers.length" class="grid" style="margin-top:1rem;">
+  <mat-card *ngFor="let d of drivers">
+    <img [src]="d.image" [alt]="d.car">
+    <mat-card-title>{{ d.car }}</mat-card-title>
+    <mat-card-subtitle>Driver: {{ d.name }}</mat-card-subtitle>
+
+    <mat-card-content>
+      <p class="row"><mat-icon>timer</mat-icon> ETA: <strong>{{ d.etaMin }} min</strong></p>
+      <p class="row"><mat-icon>route</mat-icon> Distance: <strong>{{ d.distanceKm }} km</strong></p>
+      <p class="row"><mat-icon>payments</mat-icon>
+        Fare: <strong>{{ d.priceSar }} SAR</strong>
+        <span class="muted">· {{ currency.toPKR(d.priceSar) }} PKR</span>
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions class="actions">
+      <button mat-stroked-button (click)="book(d)">Book</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

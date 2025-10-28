@@ -1,0 +1,136 @@
+<h2>Permit</h2>
+
+<mat-tab-group>
+  <!-- APPLY TAB -->
+  <mat-tab label="Apply for permit">
+    <div style="margin-top: 1rem;">
+      <mat-vertical-stepper [linear]="true">
+        <!-- Step 1: Requirements -->
+        <mat-step [completed]="acceptReq()">
+          <ng-template matStepLabel>Read requirements</ng-template>
+
+          <mat-card>
+            <mat-card-title>Before you apply</mat-card-title>
+            <mat-card-content>
+              <ul class="req-list">
+                <li>Valid passport (min 6 months before expiry)</li>
+                <li>Accommodation details or invitation letter</li>
+                <li>Recent passport-sized photo</li>
+                <li>Payment card for application fee</li>
+              </ul>
+            <mat-checkbox
+  [checked]="acceptReq()"
+  (change)="acceptReq.set($event.checked)"
+>
+  I have read and meet the requirements
+</mat-checkbox>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="actions">
+            <button mat-flat-button color="primary" matStepperNext [disabled]="!acceptReq()">Continue</button>
+          </div>
+        </mat-step>
+
+        <!-- Step 2: Fill form -->
+        <mat-step [stepControl]="form">
+          <ng-template matStepLabel>Fill form</ng-template>
+
+          <form [formGroup]="form" class="grid" style="margin-top: 30px;">
+            <mat-form-field appearance="outline">
+              <mat-label>Full name</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Nationality</mat-label>
+              <input matInput formControlName="nationality" placeholder="e.g., Pakistani">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Passport #</mat-label>
+              <input matInput formControlName="passport">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Permit type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option value="tourist">Tourist</mat-option>
+                <mat-option value="business">Business</mat-option>
+                <mat-option value="work">Work</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Start date</mat-label>
+              <input matInput [matDatepicker]="sd" formControlName="start">
+              <mat-datepicker-toggle matSuffix [for]="sd"></mat-datepicker-toggle>
+              <mat-datepicker #sd></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>End date</mat-label>
+              <input matInput [matDatepicker]="ed" formControlName="end">
+              <mat-datepicker-toggle matSuffix [for]="ed"></mat-datepicker-toggle>
+              <mat-datepicker #ed></mat-datepicker>
+            </mat-form-field>
+          </form>
+
+          <div class="actions">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-flat-button color="primary" matStepperNext [disabled]="form.invalid">Review</button>
+          </div>
+        </mat-step>
+
+        <!-- Step 3: Review + Checkout -->
+        <mat-step>
+          <ng-template matStepLabel>Checkout</ng-template>
+
+          <mat-card>
+            <mat-card-title>Review</mat-card-title>
+            <mat-card-content>
+              <p><strong>Applicant:</strong> {{ form.value.name }}</p>
+              <p><strong>Type:</strong> {{ form.value.type | titlecase }}</p>
+              <p><strong>Dates:</strong> {{ form.value.start | date:'mediumDate' }} → {{ form.value.end | date:'mediumDate' }}</p>
+              <p class="row">
+                <span class="pill">Fee: {{ priceSar() }} SAR</span>
+                <span class="muted">· {{ currency.toPKR(priceSar()) }} PKR</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="actions">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-flat-button color="primary" (click)="proceedToCheckout()">
+              Continue to Checkout
+            </button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </mat-tab>
+
+  <!-- APPROVED TAB -->
+  <mat-tab label="Approved permits">
+    <div class="grid" style="margin-top:1rem;">
+      <mat-card *ngFor="let p of approved">
+        <img [src]="p.qr" alt="QR">
+        <mat-card-title>{{ p.type | titlecase }} Permit</mat-card-title>
+        <mat-card-subtitle>
+          <span class="pill">{{ p.status }}</span>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <p class="muted">ID: {{ p.id }}</p>
+          <p>Holder: <strong>{{ p.holder }}</strong></p>
+          <p>Valid: {{ p.issueDate }} → {{ p.expiryDate }}</p>
+        </mat-card-content>
+        <mat-card-actions class="row" style="justify-content: space-between;">
+          <button mat-stroked-button (click)="openDetails(p)">View details</button>
+          <button mat-icon-button (click)="copyId(p.id)" matTooltip="Copy Permit ID">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>

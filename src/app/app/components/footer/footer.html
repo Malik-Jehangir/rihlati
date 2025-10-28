@@ -1,0 +1,36 @@
+<footer>
+  <div class="container">
+    <div class="columns">
+      <div>
+        <h4>Rihlati</h4>
+        <p>All rights reserved © 2025</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a routerLink="/explore-ksa">Explore KSA</a></li>
+          <li><a routerLink="/rooms">Booking Room</a></li>
+          <li><a routerLink="/ride">Book a Ride</a></li>
+          <li><a routerLink="/permit">Permit</a></li>
+          <li><a routerLink="/flight-status">Flight Status</a></li>
+          <li><a routerLink="/recommendations">Recommendations</a></li>
+          <li><a routerLink="/invest">Invest in KSA</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <p>
+          <mat-icon aria-hidden="true">facebook</mat-icon>
+          <mat-icon aria-hidden="true">twitter</mat-icon>
+          <mat-icon aria-hidden="true">linkedin</mat-icon>
+          <mat-icon aria-hidden="true">youtube_searched_for</mat-icon>
+        </p>
+        <h4>Newsletter</h4>
+        <div class="newsletter">
+          <input [(ngModel)]="email" placeholder="Your email" />
+          <button (click)="subscribe()">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

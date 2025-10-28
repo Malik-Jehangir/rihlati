@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Welcome to Rihlati</h2>
+
+<mat-dialog-content>
+  <mat-tab-group>
+    <!-- Sign In -->
+    <mat-tab label="Sign In">
+      <div class="tab-spacer">
+        <form [formGroup]="signInForm" class="form-stack" (ngSubmit)="signIn()">
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" autocomplete="email">
+            <mat-error *ngIf="signInForm.get('email')?.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="signInForm.get('email')?.hasError('email')">Enter a valid email</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hideSignInPw ? 'password' : 'text'" formControlName="password" autocomplete="current-password">
+            <button mat-icon-button matSuffix type="button"
+                    (click)="hideSignInPw = !hideSignInPw"
+                    [attr.aria-label]="'Toggle password visibility'">
+              <mat-icon>{{ hideSignInPw ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="signInForm.get('password')?.hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="signInForm.get('password')?.hasError('minlength')">Min 6 characters</mat-error>
+          </mat-form-field>
+
+          <div class="row" style="align-items:center;">
+            <mat-checkbox formControlName="remember">Keep me signed in</mat-checkbox>
+            <span class="hint">Use a private device if you choose this.</span>
+          </div>
+
+          <div class="actions">
+            <button mat-button type="button" mat-dialog-close>Cancel</button>
+            <button mat-flat-button color="primary" type="submit">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+
+    <!-- Sign Up -->
+    <mat-tab label="Sign Up">
+      <div class="tab-spacer">
+        <form [formGroup]="signUpForm" class="form-stack" (ngSubmit)="signUp()">
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" autocomplete="name">
+            <mat-error *ngIf="signUpForm.get('name')?.hasError('required')">Name is required</mat-error>
+            <mat-error *ngIf="signUpForm.get('name')?.hasError('minlength')">Min 2 characters</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" autocomplete="email">
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">Enter a valid email</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hideSignUpPw ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
+            <button mat-icon-button matSuffix type="button"
+                    (click)="hideSignUpPw = !hideSignUpPw"
+                    [attr.aria-label]="'Toggle password visibility'">
+              <mat-icon>{{ hideSignUpPw ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">Min 6 characters</mat-error>
+          </mat-form-field>
+
+          <div class="actions">
+            <button mat-button type="button" mat-dialog-close>Cancel</button>
+            <button mat-flat-button color="accent" type="submit">Create Account</button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
