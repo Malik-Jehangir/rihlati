@@ -1,14 +1,21 @@
 <!-- HERO -->
 <section class="hero">
+  <!-- background image layer -->
+  <div
+    class="hero-bg"
+    [style.backgroundImage]="'url(' + 'assets/land01.png' + ')'"
+  ></div>
+
   <div class="hero-content">
     <h1>Rihlati — your journey streamlined</h1>
-    <br><br>
+<br><br>
     <p>
       From the energy of Riyadh’s skyline to the calm of AlUla’s sandstone valleys,
       Rihlati brings your essentials together: explore cities, book stays, track flights,
       request rides, secure permits, and plan investments with clarity. Everything you need,
       right where you’d expect it.
     </p>
+
     <div class="cta">
       <a mat-flat-button color="primary" routerLink="/explore-ksa">Explore KSA</a>
       <a mat-stroked-button color="primary" routerLink="/rooms">Book a Room</a>
@@ -25,6 +32,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- STATS -->
 <section style="margin: 1.5rem 0;">

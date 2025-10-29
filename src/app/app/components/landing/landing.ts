@@ -22,21 +22,29 @@ import { MatCardModule } from '@angular/material/card';
       border-radius: 16px;
       isolation: isolate;
     }
-    .hero::before {
-      content: "";
-      position: absolute; inset: 0;
-      background: url('/assets/land01.png') center/cover no-repeat;
+
+    /* New: real background layer (set from template with [style.backgroundImage]) */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
       filter: brightness(0.65);
       transform: scale(1.04);
       z-index: -2;
     }
+
+    /* Keep the overlay for contrast */
     .hero::after {
       content: "";
       position: absolute; inset: 0;
-      background: radial-gradient(1200px 600px at 50% 100%, rgba(11,94,215,.35), transparent 60%),
-                  linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.1));
+      background:
+        radial-gradient(1200px 600px at 50% 100%, rgba(11,94,215,.35), transparent 60%),
+        linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.1));
       z-index: -1;
     }
+
     .hero-content { padding: clamp(1rem, 3vw, 2rem); max-width: 980px; }
     .hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 0 0 .5rem; letter-spacing: .3px; }
     .hero p  { font-size: clamp(1rem, 2.2vw, 1.125rem); margin: 0 auto 1.25rem; text-align: justify; }
