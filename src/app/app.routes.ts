@@ -28,5 +28,15 @@ export const APP_ROUTES: Routes = [
   { path: 'ride', loadComponent: () => import('./app/components/ride/ride').then(m => m.RideComponent), title: 'Book a Ride' },
   { path: 'permit', loadComponent: () => import('./app/components/permit/permit').then(m => m.PermitComponent), title: 'Permit' },
   { path: 'flight-status', loadComponent: () => import('./app/components/flight-status/flight-status').then(m => m.FlightStatusComponent), title: 'Flight Status' },
+  { path: 'recommendations', loadComponent: () =>
+    import('./app/components/recommendations/recommendations')
+      .then(m => m.RecommendationsComponent),
+  title: 'Recommendations'
+},
+{ path: 'invest', loadComponent: () =>
+    import('./app/components/invest/invest').then(m => m.InvestComponent),
+  title: 'Invest in KSA'
+},
+
   { path: '**', redirectTo: '' }
 ];

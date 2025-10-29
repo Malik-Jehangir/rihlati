@@ -1,0 +1,11 @@
+<h2>Top Recommendations</h2>
+
+<div class="grid">
+  <mat-card *ngFor="let r of recommendations" (click)="openDetails(r)">
+    <img [src]="r.image" [alt]="r.title">
+    <mat-card-title>{{ r.title }}</mat-card-title>
+    <mat-card-subtitle>
+      <mat-icon>place</mat-icon> {{ r.location }}
+    </mat-card-subtitle>
+  </mat-card>
+</div>

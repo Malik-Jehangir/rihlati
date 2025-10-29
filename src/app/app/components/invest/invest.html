@@ -1,0 +1,24 @@
+<h2>Invest in KSA</h2>
+
+<div class="grid">
+  <mat-card *ngFor="let p of projects" (click)="openDetails(p)">
+    <img [src]="p.image" [alt]="p.title">
+    <mat-card-title>{{ p.title }}</mat-card-title>
+    <mat-card-subtitle class="meta">
+      <mat-icon>place</mat-icon> {{ p.location }}
+    </mat-card-subtitle>
+
+    <mat-card-content>
+      <p style="margin:.25rem 0 .5rem; text-align:justify;">{{ p.blurb }}</p>
+      <p class="meta">
+        <mat-icon>paid</mat-icon> Min ticket: <strong style="margin-left:.25rem;">{{ formatSar(p.minTicketSar) }}</strong>
+      </p>
+      <p class="meta">
+        <mat-icon>trending_up</mat-icon> Target IRR: <strong style="margin-left:.25rem;">{{ (p.irr * 100) | number:'1.0-0' }}%</strong>
+      </p>
+      <p class="meta">
+        <mat-icon>schedule</mat-icon> Horizon: <strong style="margin-left:.25rem;">{{ p.timeline }}</strong>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
