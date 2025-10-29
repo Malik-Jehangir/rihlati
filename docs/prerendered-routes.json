@@ -1,0 +1,11 @@
+{
+  "routes": {
+    "/rihlati": {},
+    "/rihlati/checkout": {},
+    "/rihlati/explore-ksa": {},
+    "/rihlati/flight-status": {},
+    "/rihlati/permit": {},
+    "/rihlati/ride": {},
+    "/rihlati/rooms": {}
+  }
+}
