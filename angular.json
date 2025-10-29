@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/rihlati",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -27,7 +28,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              { "glob": "**/*", "input": "src/assets", "output": "assets" }
             ],
             "styles": [
               "src/styles.scss"
@@ -58,6 +60,15 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+             "pages": {
+              "outputPath": "dist/rihlati",
+              "outputMode": "static", 
+              "baseHref": "/rihlati/",
+              "assets": [
+                { "glob": "**/*", "input": "public" },
+                { "glob": "**/*", "input": "src/assets", "output": "assets" }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -90,7 +101,9 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+             { "glob": "**/*", "input": "src/assets", "output": "assets" }
+
             ],
             "styles": [
               "src/styles.scss"
